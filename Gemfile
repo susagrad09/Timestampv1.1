@@ -12,6 +12,7 @@ gem 'devise'
 gem 'client_side_validations'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails'
