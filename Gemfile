@@ -12,6 +12,8 @@ gem 'devise'
 gem 'client_side_validations'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
+gem 'newrelic_rpm'
+gem 'awesome_print'
 
 group :assets do
   gem 'sass-rails'
@@ -31,7 +33,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'launchy'
   gem 'simplecov', :require => false
-  gem 'awesome_print'
   # gem 'rb-inotify'
   # gem 'libnotify'
 end
