@@ -20,18 +20,15 @@ describe Session do
 end
 
 describe "UniqueClassValidator" do
-
 	it "should prevent two sessions of the same class from being created in one day" do
 		class_1 = Session.create(afterschool_class_id: 4, date: Time.zone.now.to_date)
   	class_2 = Session.create(afterschool_class_id: 4, date: Time.zone.now.to_date)
   	Session.all.should include class_1
   	Session.all.should_not include class_2
   end
-  
 end
 
 describe "Session stats" do
-
   before(:each) do
     @class = AfterschoolClass.create(grade_level_id: 1, teachers_attributes: {"0" => {salutation: "Mr.", first_name: "Janky", last_name: "Jank"}})
     @student1 = Student.create(first_name: 'Doctor', last_name: 'Who', afterschool_class_id: @class.id)

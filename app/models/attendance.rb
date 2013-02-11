@@ -10,6 +10,8 @@ class Attendance < ActiveRecord::Base
   scope :late, where("status = ?", 'Late')
   scope :by_date, order("created_at desc")
 
+  validate :student_attendance_validator
+
   def log_status
     if (Time.zone.now - self.session.start_time) > 5.minutes
       self.status = "Late"
@@ -27,5 +29,14 @@ class Attendance < ActiveRecord::Base
       end
     end
     @days.count
+  end
+
+  private
+
+  # Validates to ensure two attendances from the same student are not in the same class.
+  def student_attendance_validator
+    if Session.today.collect {|session| session.afterschool_class_id}.include? afterschool_class_id
+      errors[:base] << "This class is already in session"
+    end
   end
 end
